@@ -1,6 +1,6 @@
 from flask import Flask, request
 import undetected_chromedriver as uc
-from selenium.webdriver.common.by import By
+# from selenium.webdriver.common.by import By
 # from webdriver_manager.chrome import ChromeDriverManager
 # ChromeDriverManager().install()
 import undetected_chromedriver as uc
