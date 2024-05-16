@@ -1,9 +1,8 @@
 from flask import Flask, request
-import undetected_chromedriver as uc
+# import undetected_chromedriver as uc
 # from selenium.webdriver.common.by import By
 # from webdriver_manager.chrome import ChromeDriverManager
 # ChromeDriverManager().install()
-import undetected_chromedriver as uc
 
 
 app = Flask(__name__)
@@ -16,13 +15,13 @@ def home():
 def about():
     return 'About'
 
-@app.route('/housenow-crawl', methods=['POST'])
-def home2():
-    url = request.json.get('url')
-    data = get_page_source(url)
-    return {
-        'html': data
-    }
+# @app.route('/housenow-crawl', methods=['POST'])
+# def home2():
+#     url = request.json.get('url')
+#     data = get_page_source(url)
+#     return {
+#         'html': data
+#     }
     
     
 
