@@ -26,4 +26,3 @@ websockets==12.0
 Werkzeug==3.0.3
 wsproto==1.2.0
 setuptools==69.5.1
-multiprocessing==2.6.2.1
