@@ -27,7 +27,7 @@ def home2():
     options.add_argument(f"user-agent={my_user_agent}")
   
     # Initialize Chrome WebDriver with the specified options
-    driver = uc.Chrome(options=options)
+    driver = uc.Chrome(options=options,user_multi_procs=False, use_subprocess=False, headless=True)
     driver.get(url)
     page_source = driver.page_source
     driver.quit()
