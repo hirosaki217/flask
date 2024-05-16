@@ -1,4 +1,5 @@
 from flask import Flask, request
+import sys
 # import undetected_chromedriver as uc
 # from selenium.webdriver.common.by import By
 # from webdriver_manager.chrome import ChromeDriverManager
@@ -13,7 +14,8 @@ def home():
 
 @app.route('/about')
 def about():
-    return 'About'
+    python_version = f"{sys.version_info[0]}.{sys.version_info[1]}.{sys.version_info[2]}"
+    return 'About - Python Version: ' + python_version
 
 # @app.route('/housenow-crawl', methods=['POST'])
 # def home2():
