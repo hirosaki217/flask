@@ -9,10 +9,18 @@ from selenium import webdriver
 import undetected_chromedriver as uc
 
 app = Flask(__name__)
+def list_files(startpath):
+    for root, dirs, files in os.walk(startpath):
+        level = root.replace(startpath, '').count(os.sep)
+        indent = ' ' * 4 * (level)
+        print('{}{}/'.format(indent, os.path.basename(root)))
+        subindent = ' ' * 4 * (level + 1)
+        for f in files:
+            print('{}{}'.format(subindent, f))
 
 @app.route('/')
 def home():
-    return 'Hello, World.!'
+    return 'Hello, World.!'+list_files
 
 @app.route('/about')
 def about():
