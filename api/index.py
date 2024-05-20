@@ -41,7 +41,7 @@ def about():
     options.add_argument(f'--data-path={mkdtemp()}')
     options.add_argument(f'--disk-cache-dir={mkdtemp()}')
     options.add_argument('--remote-debugging-port=9222')
-    driver = uc.Chrome(options=chrome_options, driver_executable_path=driver_executable_path, browser_executable_path=browser_executable_path, version_main=114, service=service)
+    driver = uc.Chrome(options=options, driver_executable_path=driver_executable_path, browser_executable_path=browser_executable_path, version_main=114, service=service)
     driver.get('https://api.myip.com/')
     return 'About - Python Version: ' + python_version + driver.page_source
 
