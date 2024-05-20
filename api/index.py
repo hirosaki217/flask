@@ -20,23 +20,24 @@ def list_files(startpath):
 
 @app.route('/')
 def home():
-    return 'Hello, World.!'+list_files
+    list_files()
+    return 'Hello, World.!'
 
 @app.route('/about')
 def about():
     ### Dirty fixes for Lambda
-    driver_executable_path = os.path.join(os.getcwd(), 'chromedriver')
+    driver_executable_path = '/var/tmp/chromedriver'
     print(os.getcwd())
     print( os.path.join(os.getcwd(), 'chromedriver'))
     # driver_path = '/tmp/chromedriver'
     browser_executable_path = '/var/opt/chrome/chrome'
     service = webdriver.ChromeService(driver_executable_path)
     
-    # os.system(f'cp /opt/chromedriver {driver_path}')
+    # os.system(f'cp /var/opt/chromedriver {driver_path}')
     # os.chmod(driver_path, 0o777)
 
     options = webdriver.ChromeOptions()
-    options.binary_location = '/opt/chrome/chrome'
+    options.binary_location = '/var/opt/chrome/chrome'
     options.add_argument('--headless=new')
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-gpu')
