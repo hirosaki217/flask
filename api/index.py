@@ -21,7 +21,7 @@ def about():
     print(os.getcwd())
     print( os.path.join(os.getcwd(), 'chromedriver'))
     # driver_path = '/tmp/chromedriver'
-    # browser_executable_path = '/opt/chrome/chrome'
+    browser_executable_path = '/var/opt/chrome/chrome'
     service = webdriver.ChromeService(driver_executable_path)
     
     # os.system(f'cp /opt/chromedriver {driver_path}')
