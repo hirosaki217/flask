@@ -1,6 +1,8 @@
 from flask import Flask, request
 import sys
 import os
+from tempfile import mkdtemp
+from selenium import webdriver
 # from selenium.webdriver.common.by import By
 # from webdriver_manager.chrome import ChromeDriverManager
 # ChromeDriverManager().install()
@@ -17,14 +19,26 @@ def about():
     ### Dirty fixes for Lambda
     driver_executable_path = '/tmp/chromedriver'
     browser_executable_path = '/opt/chrome/chrome'
+    service = webdriver.ChromeService("/opt/chromedriver")
     
-    os.system(f'cp /opt/chromedriver {driver_executable_path}')
-    os.chmod(driver_executable_path, 0o777)
-    python_version = f"{sys.version_info[0]}.{sys.version_info[1]}.{sys.version_info[2]}"
-    chrome_options = uc.ChromeOptions()
-    chrome_options.add_argument('--headless=new')
-    chrome_options.add_argument('user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36')
-    driver = uc.Chrome(options=chrome_options, driver_executable_path=driver_executable_path, browser_executable_path=browser_executable_path, version_main=114)
+    os.system(f'cp /opt/chromedriver {driver_path}')
+    os.chmod(driver_path, 0o777)
+
+    options = webdriver.ChromeOptions()
+    options.binary_location = '/opt/chrome/chrome'
+    options.add_argument('--headless=new')
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-gpu')
+    options.add_argument('--window-size=1280x1696')
+    options.add_argument('--single-process')
+    options.add_argument('--disable-dev-shm-usage')
+    options.add_argument('--disable-dev-tools')
+    options.add_argument('--no-zygote')
+    options.add_argument(f'--user-data-dir={mkdtemp()}')
+    options.add_argument(f'--data-path={mkdtemp()}')
+    options.add_argument(f'--disk-cache-dir={mkdtemp()}')
+    options.add_argument('--remote-debugging-port=9222')
+    driver = uc.Chrome(options=chrome_options, driver_executable_path=driver_executable_path, browser_executable_path=browser_executable_path, version_main=114, service=service)
     driver.get('https://api.myip.com/')
     return 'About - Python Version: ' + python_version + driver.page_source
 
