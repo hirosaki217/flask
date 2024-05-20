@@ -17,7 +17,9 @@ def home():
 @app.route('/about')
 def about():
     ### Dirty fixes for Lambda
-    driver_executable_path = '/tmp/chromedriver'
+    driver_executable_path = os.path.join(os.getcwd(), 'chromedriver')
+    print(os.getcwd())
+    print( os.path.join(os.getcwd(), 'chromedriver'))
     driver_path = '/tmp/chromedriver'
     browser_executable_path = '/opt/chrome/chrome'
     service = webdriver.ChromeService("/opt/chromedriver")
