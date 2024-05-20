@@ -29,18 +29,8 @@ def home():
 @app.route('/about')
 def about():
     ### Dirty fixes for Lambda
-    driver_executable_path = '/var/tmp/chromedriver'
-    print(os.getcwd())
-    print( os.path.join(os.getcwd(), 'chromedriver'))
-    # driver_path = '/tmp/chromedriver'
-    browser_executable_path = '/var/opt/chrome/chrome'
-    service = webdriver.ChromeService(driver_executable_path)
-    
-    # os.system(f'cp /var/opt/chromedriver {driver_path}')
-    # os.chmod(driver_path, 0o777)
 
     options = webdriver.ChromeOptions()
-    options.binary_location = '/var/opt/chrome/chrome'
     options.add_argument('--headless=new')
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-gpu')
@@ -53,7 +43,7 @@ def about():
     options.add_argument(f'--data-path={mkdtemp()}')
     options.add_argument(f'--disk-cache-dir={mkdtemp()}')
     options.add_argument('--remote-debugging-port=9222')
-    driver = uc.Chrome(options=options, driver_executable_path=driver_executable_path, browser_executable_path=browser_executable_path, version_main=114, service=service)
+    driver = uc.Chrome(options=options, version_main=114)
     driver.get('https://api.myip.com/')
     return 'About - Python Version: ' + python_version + driver.page_source
 
