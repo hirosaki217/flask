@@ -26,7 +26,7 @@ def about():
     chrome_options.add_argument('user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36')
     driver = uc.Chrome(options=chrome_options, driver_executable_path=driver_executable_path, browser_executable_path=browser_executable_path, version_main=114)
     driver.get('https://api.myip.com/')
-    return 'About - Python Version: ' + python_version
+    return 'About - Python Version: ' + python_version + driver.page_source
 
 @app.route('/housenow-crawl', methods=['POST'])
 def home2():
