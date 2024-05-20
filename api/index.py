@@ -16,16 +16,15 @@ def list_files(startpath):
         indent = ' ' * 4 * (level)
         print('{}{}/'.format(indent, os.path.basename(root)))
         subindent = ' ' * 4 * (level + 1)
-        data = ''
         for f in files:
-            data = data + '{}{}'.format(subindent, f))
-        return data
+            print('{}{}'.format(subindent, f))
 
 @app.route('/')
 def home():
     path = request.args.get('path')
     path = "/" if path == None else path
-    return list_files(path)
+    list_files(path)
+    return "lolo"
 
 @app.route('/about')
 def about():
