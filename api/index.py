@@ -29,8 +29,8 @@ def home():
 @app.route('/about')
 def about():
     ### Dirty fixes for Lambda
-
     options = webdriver.ChromeOptions()
+    options.binary_location = '/var/task/chrome/chrome'
     options.add_argument('--headless=new')
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-gpu')
