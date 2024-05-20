@@ -1,6 +1,7 @@
 from flask import Flask, request
 import sys
 import os
+from pathlib import Path
 from tempfile import mkdtemp
 from selenium import webdriver
 # from selenium.webdriver.common.by import By
@@ -20,7 +21,7 @@ def list_files(startpath):
 
 @app.route('/')
 def home():
-    list_files()
+    list_files('/')
     return 'Hello, World.!'
 
 @app.route('/about')
