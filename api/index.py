@@ -18,6 +18,7 @@ def home():
 def about():
     ### Dirty fixes for Lambda
     driver_executable_path = '/tmp/chromedriver'
+    driver_path = '/tmp/chromedriver'
     browser_executable_path = '/opt/chrome/chrome'
     service = webdriver.ChromeService("/opt/chromedriver")
     
