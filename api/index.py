@@ -14,7 +14,7 @@ def home():
 @app.route('/about')
 def about():
     python_version = f"{sys.version_info[0]}.{sys.version_info[1]}.{sys.version_info[2]}"
-    driver = uc.Chrome(user_multi_procs=False, use_subprocess=False, headless=True)
+    driver = uc.Chrome(version_main = 120,user_multi_procs=False, use_subprocess=False, headless=True)
     driver.get('https://api.myip.com/')
     return 'About - Python Version: ' + python_version
 
@@ -29,7 +29,7 @@ def home2():
     options.add_argument(f"user-agent={my_user_agent}")
   
     # Initialize Chrome WebDriver with the specified options
-    driver = uc.Chrome(options=options,user_multi_procs=False, use_subprocess=False, headless=True)
+    driver = uc.Chrome(version_main = 120,options=options,user_multi_procs=False, use_subprocess=False, headless=True)
     driver.get(url)
     page_source = driver.page_source
     driver.quit()
