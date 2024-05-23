@@ -1,7 +1,5 @@
 import undetected_chromedriver as uc
-from pyvirtualdisplay import Display
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.service import Service
 from tempfile import mkdtemp
 from flask import Flask,request
 import os
