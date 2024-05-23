@@ -10,7 +10,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    download_url("https://storage.googleapis.com/chrome-for-testing-public/125.0.6422.76/linux64/chromedriver-linux64.zip", "/tmp/chromedriver.zip")
+    if not os.path.isfile('/tmp/chromedriver-linux64/chromedriver'):
+        download_url("https://storage.googleapis.com/chrome-for-testing-public/125.0.6422.76/linux64/chromedriver-linux64.zip", "/tmp/chromedriver.zip")
     return 'HOUSENOW'
 
 @app.route('/test')
@@ -37,7 +38,7 @@ def get_uc_driver():
     # os.system(f'cp /opt/chromedriver {driver_executable_path}')
     os.chmod(driver_executable_path, 0o777)
 
-    driver = uc.Chrome( options=options, driver_executable_path= driver_executable_path, headless=True, version_main=125)#, use_subprocess=True)
+    driver = uc.Chrome( options=options, driver_executable_path= driver_executable_path, headless=True, version_main=125, use_subprocess=False)#, use_subprocess=True)
 
     return driver  
 
