@@ -25,7 +25,7 @@ def get_uc_driver():
     options.add_argument(f"--user-data-dir={mkdtemp()}")
     options.add_argument(f"--data-path={mkdtemp()}")
     options.add_argument(f"--disk-cache-dir={mkdtemp()}")    
-    driver_executable_path = ChromeDriverManager(driver_version="125", url="https://storage.googleapis.com/chrome-for-testing-public/125.0.6422.76/linux64/chromedriver-linux64.zip").install()
+    driver_executable_path = os.path.abspath(os.getcwd())+"/chromedriver"
     # os.system(f'cp /opt/chromedriver {driver_executable_path}')
     os.chmod(driver_executable_path, 0o777)
 
@@ -37,3 +37,4 @@ def get_uc_driver():
 # driver = get_uc_driver()
 # driver.get('http://checkip.amazonaws.com/')
 # print(driver.page_source)
+# print()
