@@ -5,7 +5,14 @@ import requests
 import zipfile
 import os
 app = Flask(__name__)
- 
+
+def download_url(url, save_path, chunk_size=128):
+    r = requests.get(url, stream=True)
+    with open(save_path, 'wb') as fd:
+        for chunk in r.iter_content(chunk_size=chunk_size):
+            fd.write(chunk)
+    with zipfile.ZipFile("/tmp/chromedriver.zip", 'r') as zip_ref:
+        zip_ref.extractall("/tmp")
 
 @app.route('/')
 def home():
@@ -42,16 +49,10 @@ def get_uc_driver():
     return driver  
 
 
-driver = get_uc_driver()
-driver.get('http://checkip.amazonaws.com/')
-print(driver.page_source)
+# driver = get_uc_driver()
+# driver.get('http://checkip.amazonaws.com/')
+# print(driver.page_source)
 
-def download_url(url, save_path, chunk_size=128):
-    r = requests.get(url, stream=True)
-    with open(save_path, 'wb') as fd:
-        for chunk in r.iter_content(chunk_size=chunk_size):
-            fd.write(chunk)
-    with zipfile.ZipFile("/tmp/chromedriver.zip", 'r') as zip_ref:
-        zip_ref.extractall("/tmp")
+
         
 # download_url("https://storage.googleapis.com/chrome-for-testing-public/125.0.6422.76/linux64/chromedriver-linux64.zip", "/tmp/chromedriver.zip")
