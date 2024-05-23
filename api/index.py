@@ -31,7 +31,7 @@ def get_uc_driver():
     # os.system(f'cp /opt/chromedriver {driver_executable_path}')
     # os.chmod(driver_executable_path, 0o777)
 
-    driver = uc.Chrome( options=options, headless=True)#, use_subprocess=True)
+    driver = uc.Chrome( options=options, headless=True, no_sandbox=True)#, use_subprocess=True)
 
     return driver  
 
